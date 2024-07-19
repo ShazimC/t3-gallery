@@ -1,36 +1,33 @@
 import Link from "next/link";
 
+const mockUrls = [
+  "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-pokemonpokemonpocket-monsterspokemon-franchisefictional-speciesone-pokemonmany-pokemonone-pikachu-1701527786841sy02u.png&f=1&nofb=1&ipt=e05c4cac12ecde8f9ef5b5c3e5d6909a55ce8ec8048339699d5fc110e6d3aec9&ipo=images",
+  "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-pokemonpokemonpocket-monsterspokemon-franchisefictional-speciesone-pokemonmany-pokemonone-pikachu-1701527784812pkckd.png&f=1&nofb=1&ipt=9600e041bd2c94589c4b0557b6311b1a26e4a328d547f36c6b5151510bc3db6d&ipo=images",
+  "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpngimg.com%2Fuploads%2Fpokemon%2Fpokemon_PNG113.png&f=1&nofb=1&ipt=9c5882d41a698bb13d9430c5c950da80d4bba35990538e9ce9f87dc26a0d3f9b&ipo=images",
+  "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpurepng.com%2Fpublic%2Fuploads%2Flarge%2Fpurepng.com-pokemonpokemonpocket-monsterspokemon-franchisefictional-speciesone-pokemonmany-pokemonone-pikachu-1701527784740nls3r.png&f=1&nofb=1&ipt=4246c601a3e7bdf9acc854207c46c49bcd7f7f7498494f2b32001a9a02e4da90&ipo=images",
+];
+
+type Image = {
+  id: number;
+  url: string;
+};
+
+const mockImages: Image[] = mockUrls.map((url, index) => ({
+  id: index + 1,
+  url,
+}));
+
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
+    <main className="">
+      <div className="flex flex-wrap gap-4">
+        {[...mockImages, ...mockImages, ...mockImages].map((image) => (
+          <div key={image.id} className="w-48">
+            <Link href={`/image/${image.id}`}>
+              <img src={image.url} alt="pokemon" />
+            </Link>
+          </div>
+        ))}
       </div>
     </main>
   );
